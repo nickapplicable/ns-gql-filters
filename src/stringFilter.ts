@@ -10,16 +10,16 @@ export class StringFilterInput {
 	@Field((type) => [StringFilterInput], { nullable: true })
 	or?: StringFilterInput[]
 
-	@Field({ nullable: true })
+	@Field((type) => String, { nullable: true })
 	eq?: String
 
-	@Field({ nullable: true })
+	@Field((type) => String, { nullable: true })
 	neq?: String
 
-	@Field({ nullable: true })
+	@Field((type) => String, { nullable: true })
 	contains?: String
 
-	@Field({ nullable: true })
+	@Field((type) => String, { nullable: true })
 	ncontains?: String;
 
 	@Field((type) => [String], { nullable: true })
@@ -28,22 +28,22 @@ export class StringFilterInput {
 	@Field((type) => [String], { nullable: true })
 	nin?: String[]
 
-	@Field({ nullable: true })
+	@Field((type) => String, { nullable: true })
 	startsWith?: String
 
-	@Field({ nullable: true })
+	@Field((type) => String, { nullable: true })
 	nstartsWith?: String
 
-	@Field({ nullable: true })
+	@Field((type) => String, { nullable: true })
 	endsWith?: String
 
-	@Field({ nullable: true })
+	@Field((type) => String, { nullable: true })
 	nendsWith?: String
 
-	@Field({ nullable: true })
+	@Field((type) => Boolean, { nullable: true })
 	isNull?: Boolean
 
-	@Field({ nullable: true })
+	@Field((type) => Boolean, { nullable: true })
 	isNotNull?: Boolean
 }
 

@@ -10,16 +10,16 @@ export class BooleanFilterInput {
 	@Field((type) => [BooleanFilterInput], { nullable: true })
 	or?: BooleanFilterInput[]
 
-	@Field({ nullable: true })
+	@Field((type) => Boolean, { nullable: true })
 	eq?: Boolean
 
-	@Field({ nullable: true })
+	@Field((type) => Boolean, { nullable: true })
 	neq?: Boolean
 
-	@Field({ nullable: true })
+	@Field((type) => Boolean, { nullable: true })
 	isNull?: Boolean
 
-	@Field({ nullable: true })
+	@Field((type) => Boolean, { nullable: true })
 	isNotNull?: Boolean
 }
 

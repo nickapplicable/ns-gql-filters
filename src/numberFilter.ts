@@ -10,10 +10,10 @@ export class NumberFilterInput {
 	@Field((type) => [NumberFilterInput], { nullable: true })
 	or?: NumberFilterInput[]
 
-	@Field({ nullable: true })
+	@Field((type) => Number, { nullable: true })
 	eq?: Number
 
-	@Field({ nullable: true })
+	@Field((type) => Number, { nullable: true })
 	neq?: Number;
 
 	@Field((type) => [Number], { nullable: true })
@@ -22,22 +22,22 @@ export class NumberFilterInput {
 	@Field((type) => [Number], { nullable: true })
 	nin?: Number[]
 
-	@Field({ nullable: true })
+	@Field((type) => Number, { nullable: true })
 	gt?: Number
 
-	@Field({ nullable: true })
+	@Field((type) => Number, { nullable: true })
 	gte?: Number
 
-	@Field({ nullable: true })
+	@Field((type) => Number, { nullable: true })
 	lt?: Number
 
-	@Field({ nullable: true })
+	@Field((type) => Number, { nullable: true })
 	lte?: Number
 
-	@Field({ nullable: true })
+	@Field((type) => Boolean, { nullable: true })
 	isNull?: Boolean
 
-	@Field({ nullable: true })
+	@Field((type) => Boolean, { nullable: true })
 	isNotNull?: Boolean
 }
 
