@@ -31,6 +31,8 @@ export const handleBooleanFilter: FilterHandler<BooleanFilterInput> = (
 ) => {
 	let queries: FilterQueries = []
 
+	const id = Math.random().toString(36).substring(7)
+
 	if (filter.and)
 		queries.push(
 			new Brackets(
@@ -45,9 +47,9 @@ export const handleBooleanFilter: FilterHandler<BooleanFilterInput> = (
 		)
 
 	if (filter.eq !== undefined)
-		queries.push([`${field} = :${field}`, { [field]: filter.eq }])
+		queries.push([`${field} = :eq_${id}`, { [`eq_${id}`]: filter.eq }])
 	if (filter.neq !== undefined)
-		queries.push([`${field} != :${field}`, { [field]: filter.neq }])
+		queries.push([`${field} != :neq_${id}`, { [`neq_${id}`]: filter.neq }])
 	if (filter.isNull !== undefined)
 		queries.push([`${field} IS NULL`, undefined])
 	if (filter.isNotNull !== undefined)

@@ -55,6 +55,8 @@ export const handleStringFilter: FilterHandler<StringFilterInput> = (
 ) => {
 	let queries: FilterQueries = []
 
+	const id = Math.random().toString(36).substring(7)
+
 	if (filter.and)
 		queries.push(
 			new Brackets(
@@ -69,42 +71,48 @@ export const handleStringFilter: FilterHandler<StringFilterInput> = (
 		)
 
 	if (filter.eq !== undefined)
-		queries.push([`${field} = :eq`, { eq: filter.eq }])
+		queries.push([`${field} = :eq_${id}`, { [`eq_${id}`]: filter.eq }])
 	if (filter.neq !== undefined)
-		queries.push([`${field} != :neq`, { neq: filter.neq }])
+		queries.push([`${field} != :neq_${id}`, { [`neq_${id}`]: filter.neq }])
 	if (filter.contains !== undefined)
 		queries.push([
-			`${field} LIKE :contains`,
-			{ contains: `%${filter.contains}%` },
+			`${field} LIKE :contains_${id}`,
+			{ [`contains_${id}`]: `%${filter.contains}%` },
 		])
 	if (filter.ncontains !== undefined)
 		queries.push([
-			`${field} NOT LIKE :ncontains`,
-			{ ncontains: `%${filter.ncontains}%` },
+			`${field} NOT LIKE :ncontains_${id}`,
+			{ [`ncontains_${id}`]: `%${filter.ncontains}%` },
 		])
 	if (filter.in !== undefined)
-		queries.push([`${field} IN (:...in)`, { in: filter.in }])
+		queries.push([
+			`${field} IN (:...in_${id})`,
+			{ [`in_${id}`]: filter.in },
+		])
 	if (filter.nin !== undefined)
-		queries.push([`${field} NOT IN (:...nin)`, { nin: filter.nin }])
+		queries.push([
+			`${field} NOT IN (:...nin_${id})`,
+			{ [`nin_${id}`]: filter.nin },
+		])
 	if (filter.startsWith !== undefined)
 		queries.push([
-			`${field} LIKE :startsWith`,
-			{ startsWith: `${filter.startsWith}%` },
+			`${field} LIKE :startsWith_${id}`,
+			{ [`startsWith_${id}`]: `${filter.startsWith}%` },
 		])
 	if (filter.nstartsWith !== undefined)
 		queries.push([
-			`${field} NOT LIKE :nstartsWith`,
-			{ nstartsWith: `${filter.nstartsWith}%` },
+			`${field} NOT LIKE :nstartsWith_${id}`,
+			{ [`nstartsWith_${id}`]: `${filter.nstartsWith}%` },
 		])
 	if (filter.endsWith !== undefined)
 		queries.push([
-			`${field} LIKE :endsWith`,
-			{ endsWith: `%${filter.endsWith}` },
+			`${field} LIKE :endsWith_${id}`,
+			{ [`endsWith_${id}`]: `%${filter.endsWith}` },
 		])
 	if (filter.nendsWith !== undefined)
 		queries.push([
-			`${field} NOT LIKE :nendsWith`,
-			{ nendsWith: `%${filter.nendsWith}` },
+			`${field} NOT LIKE :nendsWith_${id}`,
+			{ [`nendsWith_${id}`]: `%${filter.nendsWith}` },
 		])
 	if (filter.isNull !== undefined)
 		queries.push([`${field} IS NULL`, undefined])
